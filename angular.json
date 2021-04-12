@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "kanboard"
+    }
+  },
+  "defaultProject": "kanboard",
+  "cli": {
+    "analytics": "928e8455-4d59-4ec2-aec0-6e6130402baa"
+  }
 }
