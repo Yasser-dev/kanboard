@@ -1,0 +1,64 @@
+<mat-sidenav-container class="sidenav-container mat-app-background" [ngClass]="{'dark-mode' : isDark }">
+  <!-- mobile sidenav -->
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="false"
+  >
+    <mat-toolbar > 
+      <img *ngIf="isHandset$ | async" src="assets/logo-word.svg" alt="kanboard logo" width="100%" />
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item  routerLink="/login" (click)="drawer.close()">Login</a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <!-- Desktop navbar -->
+  <mat-sidenav-content class="content" >
+    <mat-toolbar  [ngClass]="{'light-header' : !isDark }">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="logo" [ngClass]="{'margin-auto':(isHandset$ | async)}" routerLink="/">
+        <img *ngIf="!(isHandset$ | async)" src="assets/logo-full-hor.svg" alt="kanboard logo" height="100%" /> 
+        <img *ngIf="isHandset$ | async"  src="assets/logo.svg" alt="kanboard logo"  height="100%" />
+      </span>
+
+      <span *ngIf="!(isHandset$ | async)" class="fill-space"></span>
+      <div *ngIf="!(isHandset$ | async)">
+       <a mat-button routerLink="/login">Login</a>
+      </div>
+
+
+      <button
+        mat-icon-button
+       *ngIf="!isDark"
+       (click)="toggleDark()"
+      >
+        <mat-icon>dark_mode</mat-icon>
+
+<!--        <mat-icon>nights_stay</mat-icon>-->
+      </button>
+      <button
+        mat-icon-button
+        *ngIf="isDark"
+
+        (click)="toggleDark()"
+      >
+        <mat-icon>light_mode</mat-icon>
+      </button>
+
+    </mat-toolbar>
+
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,15 +1,15 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @import "~@angular/material/theming";
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat-core();
+$custom-typography: mat-typography-config($font-family: 'Lato', );
 
-$primary-color: (
-  50: #f0f0fa,
+
+
+
+
+@include mat-core($custom-typography);
+
+
+$primary-color: (50: #f0f0fa,
   100: #d9d9f2,
   200: #bfbfea,
   300: #a5a5e2,
@@ -23,8 +23,7 @@ $primary-color: (
   A200: #e5e5ff,
   A400: #b3b3ff,
   A700: #9999ff,
-  contrast: (
-    50: #000000,
+  contrast: (50: #000000,
     100: #000000,
     200: #000000,
     300: #000000,
@@ -40,8 +39,7 @@ $primary-color: (
     A700: #000000,
   ),
 );
-$accent-color: (
-  50: #f2fcfc,
+$accent-color: (50: #f2fcfc,
   100: #def9f7,
   200: #c8f5f2,
   300: #b2f0ec,
@@ -55,8 +53,7 @@ $accent-color: (
   A200: #ffffff,
   A400: #e2fffd,
   A700: #c9fffa,
-  contrast: (
-    50: #000000,
+  contrast: (50: #000000,
     100: #000000,
     200: #000000,
     300: #000000,
@@ -73,39 +70,47 @@ $accent-color: (
   ),
 );
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
+
 $kanboard-primary: mat-palette($primary-color);
 $kanboard-accent: mat-palette($accent-color);
-
-// The warn palette is optional (defaults to red).
 $kanboard-warn: mat-palette($mat-red);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$kanboard-theme: mat-dark-theme(
-  (
-    color: (
-      primary: $kanboard-primary,
+$kanboard-theme: mat-light-theme((color: (primary: $kanboard-primary,
       accent: $kanboard-accent,
       warn: $kanboard-warn,
     ),
-  )
-);
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
+  ));
+$kanboard-theme-dark: mat-dark-theme((color: (primary: $kanboard-primary,
+      accent: $kanboard-accent,
+      warn: $kanboard-warn,
+    ),
+  ));
+
+.dark-mode {
+  @include angular-material-theme($kanboard-theme-dark)
+}
+
+
+
 @include angular-material-theme($kanboard-theme);
 
-/* You can add global styles to this file, and also import other style files */
 
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Lato', sans-serif;
+
+  h1,
+  h2,
+  h3,
+  h4 {
+
+    font-family: 'Raleway' !important;
+
+  }
 }
