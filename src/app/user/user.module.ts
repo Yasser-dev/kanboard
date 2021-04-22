@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
 import { AuthPageComponent } from './auth-page/auth-page.component';
+import { GoogleSigninDirective } from './google-signin.directive';
 
 @NgModule({
-  declarations: [AuthPageComponent],
+  declarations: [AuthPageComponent, GoogleSigninDirective],
   imports: [CommonModule, UserRoutingModule, SharedModule],
 })
 export class UserModule {}
