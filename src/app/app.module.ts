@@ -10,10 +10,11 @@ import {environment} from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/Auth';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomepageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
