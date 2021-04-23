@@ -27,10 +27,7 @@ export class BoardService {
 
   //  Update board tasks
   updateTasks(boardId: string, tasks: Task[]) {
-    return this.db
-      .collection('boards')
-      .doc(boardId)
-      .update({ ...tasks });
+    return this.db.collection('boards').doc(boardId).update({ tasks });
   }
 
   // Delete a task
