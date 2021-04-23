@@ -1,13 +1,27 @@
 button {
+  margin: 1em;
+
   img {
-    width: 1.25em;
+    height: 1.1em;
+    margin-bottom: 0.2em;
   }
 }
 
 main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: 2em;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      font-size: 2em;
+      font-weight: bold;
+    }
+  }
+
 }
 
 .logout {
