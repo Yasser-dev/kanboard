@@ -20,7 +20,32 @@
       />
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
+      <a
+        mat-list-item
+        routerLink="/login"
+        *ngIf="!(afAuth.authState | async)"
+        (click)="drawer.close()"
+        >Login</a
+      >
+
+      <a
+        mat-list-item
+        routerLink="/login"
+        *ngIf="afAuth.authState | async as user"
+      >
+        <img
+          class="avatar"
+          [src]="user.photoURL || 'assets/default-user.svg'"
+        />
+        {{ user.displayName || "profile" }}
+      </a>
+      <a
+        mat-list-item
+        routerLink="/kanban"
+        *ngIf="afAuth.authState | async as user"
+      >
+        My Kanboard
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <!-- Desktop navbar -->
@@ -56,16 +81,36 @@
 
       <span *ngIf="!(isHandset$ | async)" class="fill-space"></span>
       <div *ngIf="!(isHandset$ | async)">
-        <a mat-stroked-button routerLink="/login">Login</a>
+        <a mat-button routerLink="/login" *ngIf="!(afAuth.authState | async)"
+          >Login</a
+        >
+        <a
+          mat-button
+          routerLink="/kanban"
+          *ngIf="afAuth.authState | async as user"
+        >
+          My Kanboard
+        </a>
+        <a
+          mat-button
+          routerLink="/login"
+          *ngIf="afAuth.authState | async as user"
+        >
+          <img
+            class="avatar"
+            [src]="user.photoURL || 'assets/default-user.svg'"
+          />
+          {{ user.displayName || "profile" }}
+        </a>
       </div>
 
       <button mat-icon-button *ngIf="!isDark" (click)="toggleDark()">
-        <mat-icon>dark_mode</mat-icon>
+        <mat-icon color="primary">dark_mode</mat-icon>
 
         <!--        <mat-icon>nights_stay</mat-icon>-->
       </button>
       <button mat-icon-button *ngIf="isDark" (click)="toggleDark()">
-        <mat-icon>light_mode</mat-icon>
+        <mat-icon color="accent">light_mode</mat-icon>
       </button>
     </mat-toolbar>
 

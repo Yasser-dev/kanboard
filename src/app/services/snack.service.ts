@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { tap } from 'rxjs/operators';
+// import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +11,10 @@ export class SnackService {
 
   authError() {
     this.snackBar.open('You must be logged in!', 'OK');
-
-    return this.snackBar._openedSnackBarRef
-      .onAction()
-      .pipe(tap((_) => this.router.navigate(['/login'])))
-      .subscribe();
+    this.router.navigate(['/login']);
+    // return this.snackBar._openedSnackBarRef
+    //   .onAction()
+    //   .pipe(tap((_) => this.router.navigate(['/login'])))
+    //   .subscribe();
   }
 }

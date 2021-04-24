@@ -1,13 +1,13 @@
 import { AuthGuard } from './user/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomepageComponent,
+    redirectTo: 'kanban',
     canActivate: [AuthGuard],
+    pathMatch: 'full',
   },
   {
     path: 'login',
@@ -17,6 +17,7 @@ const routes: Routes = [
     path: 'kanban',
     loadChildren: () =>
       import('./kanban/kanban.module').then((m) => m.KanbanModule),
+    canActivate: [AuthGuard],
   },
 ];
 

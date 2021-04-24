@@ -10,7 +10,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class EmailLoginComponent implements OnInit {
   form: FormGroup;
 
-  type: 'login' | 'signup' | 'reset' = 'signup';
+  type: 'login' | 'signup' | 'reset' = 'login';
   loading = false;
 
   serverMessage: string;
